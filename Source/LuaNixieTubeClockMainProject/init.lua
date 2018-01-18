@@ -37,18 +37,17 @@ end)
 
 nixieClockTubePosition = 0;
 tmr.alarm(3, 7, tmr.ALARM_AUTO, function()
-    stringCapturePosition = nixieClockTubePosition + 1;
+    nixieClockTubePosition = nixieClockTubePosition + 1;
 
     gpio.write( hef4028PinA, gpio.LOW )
     gpio.write( hef4028PinB, gpio.LOW )
     gpio.write( hef4028PinC, gpio.LOW )
     gpio.write( hef4028PinD, gpio.LOW )
     
-    controlNumbers(string.sub(time,stringCapturePosition,stringCapturePosition))
+    controlNumbers(string.sub(time,nixieClockTubePosition,nixieClockTubePosition))
     controlPower(nixieClockTubePosition)
     
-    nixieClockTubePosition = nixieClockTubePosition + 1;
-    if(nixieClockTubePosition > 5) then
+    if(nixieClockTubePosition == 6) then
        nixieClockTubePosition = 0
     end
 end)
