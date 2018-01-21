@@ -1,9 +1,7 @@
 dofile ("initializationConfig.lua")
-
 dofile ("initializationMode.lua")
-
+dofile ("clearPower.lua")
 dofile ("controlPower.lua")
-
 dofile ("controlNumbers.lua")
 
 wifi.setmode(wifi.STATION)
@@ -38,12 +36,8 @@ end)
 nixieClockTubePosition = 0;
 tmr.alarm(3, 7, tmr.ALARM_AUTO, function()
     nixieClockTubePosition = nixieClockTubePosition + 1;
-
-    gpio.write( hef4028PinA, gpio.LOW )
-    gpio.write( hef4028PinB, gpio.LOW )
-    gpio.write( hef4028PinC, gpio.LOW )
-    gpio.write( hef4028PinD, gpio.LOW )
     
+    clearPower(nixieClockTubePosition)
     controlNumbers(string.sub(time,nixieClockTubePosition,nixieClockTubePosition))
     controlPower(nixieClockTubePosition)
     
