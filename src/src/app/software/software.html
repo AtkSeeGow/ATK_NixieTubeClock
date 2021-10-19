@@ -1,0 +1,98 @@
+<layout>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-category">Arduino</h5>
+          <h3 class="card-title">NixieTubeClock.Arduino</h3>
+        </div>
+        <div class="card-body">
+          <div class="typography-line">
+            <p>透過HEF4028控制六個TLP521快速(二微秒)的替換通電的真空管，並趨近同時操作K155ID1顯示對應的數字</p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">NumberManager</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="typography-line">
+                      <p>K155ID1對應類別，其中包含四個PIN腳設定</p>
+                      <pre>
+NumberManager::NumberManager()
+{{ '{' }}
+<code class="text-danger">  this->p1 = 6;
+  this->p2 = 7;
+  this->p3 = 8;
+  this->p4 = 9;</code>
+
+  pinMode(this->p1, OUTPUT);
+  pinMode(this->p2, OUTPUT);
+  pinMode(this->p3, OUTPUT);
+  pinMode(this->p4, OUTPUT);
+  {{'}'}}
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">PowerManager</h3>
+                  </div>
+                  <div class="card-body">
+                    <div class="typography-line">
+                      <p>HEF4028對應類別，其中包含四個PIN腳設定</p>
+                      <pre>
+PowerManager::PowerManager()
+{{ '{' }}
+<code class="text-danger">  this->p1 = 10;
+  this->p2 = 16;
+  this->p3 = 14;
+  this->p4 = 15;</code>
+
+  pinMode(this->p1, OUTPUT);
+  pinMode(this->p2, OUTPUT);
+  pinMode(this->p3, OUTPUT);
+  pinMode(this->p4, OUTPUT);
+{{'}'}}
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-category">Python</h5>
+          <h3 class="card-title">NixieTubeClock.Python</h3>
+        </div>
+        <div class="card-body">
+          <div class="typography-line">
+            <p>這是一個單純的小程式，每秒透過Serial Port將現在的時間傳給Arduino</p>
+            <br>
+            <pre>
+import serial
+import time
+
+from datetime import datetime
+
+ser = <code class="text-danger">serial.Serial("COM4", 9600);</code>
+
+while True:
+    message = datetime.now().strftime('%H%M%S') + '\n'
+    ser.write(str.encode(message));
+    time.sleep(1)
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</layout>
